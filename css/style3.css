@@ -249,7 +249,6 @@ ul li{
   text-shadow: 10px 10px 40px gold;
 
 }
-
 #download-btn {
   position: absolute;
   text-align: center;
@@ -261,11 +260,11 @@ ul li{
   font-size: 1em;
   border-radius: 20px;
   font-family: 'Oswald', sans-serif;
-  background-color: rgb(187, 176, 176);
+  background-color: rgb(169, 158, 158);
   transition: 0.5s ease-in-out;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1px solid rgb(0, 0, 0) ;
+  border: 2px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
 }
 
@@ -274,8 +273,61 @@ ul li{
   color: rgb(42, 234, 255);
   box-shadow: 10px 10px 40px rgba(255, 255, 255, 0.2);
 }
-
-#download-btn.clicked {
-  border: 1px solid rgb(255, 0, 0) ;
-  color: rgb(255, 0, 0);
+.border-svg {
+  position: absolute;
+  inset: -2px;
+  width: calc(100% + 3px);
+  height: calc(100% + 3px);
+  pointer-events: none;
 }
+
+.border-svg path {
+  fill: none;
+  stroke: rgb(42, 234, 255);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+#download-btn.clicked .border-svg path {
+  animation: drawBorder 0.5s ease forwards;
+}
+
+@keyframes drawBorder {
+  0%   { stroke-dashoffset: 1; opacity: 1; }
+  90%  { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* --- descending border effect --- */
+/*
+#download-btn::after {
+  content: "";
+  position: absolute;
+  inset: -3px; 
+  border-radius: 20px;
+  border: 3px solid rgb(42, 234, 255);
+  clip-path: inset(0 0 100% 0); 
+  pointer-events: none;
+}
+
+#download-btn.clicked::after {
+  animation: borderDescend 0.5s ease forwards;
+}
+
+@keyframes borderDescend {
+  0%   { clip-path: inset(0 0 100% 0); opacity: 1; } 
+  10%   { clip-path: inset(0 0 90% 0);  opacity: 1; }
+  20%  { clip-path: inset(0 0 80% 0);  opacity: 1; } 
+  30%  { clip-path: inset(0 0 70% 0);  opacity: 1; }
+  40%  { clip-path: inset(0 0 60% 0);  opacity: 1; }
+  50%  { clip-path: inset(0 0 50% 0);  opacity: 1; } 
+  60%  { clip-path: inset(0 0 40% 0);  opacity: 1; }
+  70%  { clip-path: inset(0 0 30% 0);  opacity: 1; }
+  80%  { clip-path: inset(0 0 20% 0);  opacity: 1; }
+  90%  { clip-path: inset(0 0 10% 0);   opacity: 1; }
+  99%  { clip-path: inset(0 0 5% 0);  opacity: 1; }
+  100% { clip-path: inset(0 0 0% 0);   opacity: 1; } 
+}
+*/

@@ -22,9 +22,12 @@ const btn = document.getElementById('download-btn');
 let timeoutId;
 
 btn.addEventListener('click', () => {
+    btn.classList.remove('clicked');
+    void btn.offsetWidth; // forces a reflow so the animation restarts on repeat clicks
     btn.classList.add('clicked');
+
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
         btn.classList.remove('clicked');
-    }, 500);
+    }, 550);
 });
