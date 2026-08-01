@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+:root {
+    --bg-color: rgb(20, 20, 20);
+    --card-color: rgb(23, 23, 23);
+    overflow: scroll;
+  }
+
+  
+body {
+    align-items: center;
+    background-color: var(--bg-color);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px;
+    background-image: radial-gradient(
+    rgba(255, 255, 255, 0.2) 8%, 
+    transparent 8%
+    );
+    background-position: 0% 0%;
+    background-size: 3vmin 3vmin;
+}
+
+#sup {
+  top: 0%;
+  position: absolute;
+}
+
+.hamburger {
+  display: block;
+  width: 35px;
+  cursor: pointer;
+  position: fixed;
+  left: 1%;
+  top: 3%;
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.hamburger .bar, .hamburger::after, .hamburger::before {
+  content: '';
+  display: block;
+  width :30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0px;
+  transition: 0.4s;
+
+}
+
+.hamburger.is-active:before {
+  transform: rotate(-45deg) translate(-8px, 6px);
+}
+
+.hamburger.is-active:after {
+  transform: rotate(45deg) translate(-6.5px, -6px);
+}
+
+.hamburger.is-active .bar {
+  opacity: 0;
+}
+
+.navbar {
+  opacity: 0;
+  transition: 0.5s ease-in-out;
+  pointer-events: none;
+  
+}
+
+.navbar.is-active {
+  transition: 0.5s ease-in-out;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+.navbar li {
+  display: inline-block;
+}
+
+.navbar a:hover {
+  color: rgb(42, 234, 255);
+  transition: .5s ease-in-out;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  width: 100px;
+  display: block;
+  padding: 35px 80px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+  
+  #cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;  
+    max-width: 916px;
+    width: calc(100% - 20px);
+  }
+  
+  #cards:hover > .card::after {
+    opacity: 1;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    height: 260px;
+    flex-direction: column;
+    position: relative;
+    width: 300px;  
+  }
+
+  .card:hover {
+    opacity: 5;
+  }
+  
+  .card:hover::before {
+    opacity: 1;
+  }
+  
+  .card::before,
+  .card::after {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    transition: opacity 500ms;
+    width: 100%;
+  }
+  
+  .card::before {
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.06),
+      transparent 40%
+    );
+    z-index: 3;
+  }
+  
+  .card::after {  
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(255, 255, 255, 0.4),
+      transparent 40%
+    );
+    z-index: 1;
+  }
+  
+  .card > .card-content {
+    background-color: var(--card-color);
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    inset: 1px;
+    padding: 0px;
+    position: absolute;
+    z-index: 3;
+  }
+  
+  /* -- ↓ ↓ ↓ extra card content styles ↓ ↓ ↓ -- */
+  
+  h1, h2, h3, h4, span {
+    color: rgb(240, 240, 240);
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    margin: 0px;
+    z-index: 5;
+  }
+  
+  .card-image {
+    border-radius: inherit;
+    align-items: center;
+    display: flex;
+    height: auto;
+    width: auto;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .card-image > i {
+    font-size: 6em;
+    opacity: 0.25;
+  }
+  
+  .card-info-wrapper {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    padding: 0px 0px;
+  }
+  
+  .card-info {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .card-info > i {  
+    font-size: 1em;
+    height: 2px;
+    line-height: 0px;
+  }
+  
+.h4card {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Oswald', sans-serif;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 10px;
+    transition: opacity .5s, visibility .5s;
+}
+
+.card-content:hover .h4card {
+    visibility: visible;
+    opacity: 1;
+    z-index:2;
+}
+
+
+  
+  .card-info-title > h4 {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    margin-top: 0px;
+  }
+
+  
+  /* -- ↓ ↓ ↓ some responsiveness ↓ ↓ ↓ -- */
+  
+  @media(max-width: 1000px) {
+    body {
+      align-items: flex-start;  
+      overflow: auto;
+    }
+    
+    #cards {    
+      max-width: 1000px;
+      padding: 10px 0px;
+    }
+    
+    .card {
+      flex-shrink: 1;
+      width: calc(50% - 4px);
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .card {
+      height: 180px;
+    }
+    
+    .card-image {
+      height: 80px;  
+    }
+    
+    .card-image > i {
+      font-size: 3em;
+    }
+      
+    .card-info-wrapper {
+      padding: 0px 10px;
+    }
+    
+    .card-info > i { 
+      font-size: 0.8em; 
+    }
+    
+    .card-info-title > h3 {
+      font-size: 0.9em;
+    }
+  
+    .card-info-title > h4 {
+      font-size: 0.8em;
+      margin-top: 4px;
+    }
+  }
+  
+  @media(max-width: 320px) {
+    .card {
+      width: 100%;
+    }
+  }
